@@ -61,7 +61,7 @@ Your report should be one report for all the parts. You can - again - follow alo
 
 To get the data, run 
 ```
-curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp`
+curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
 ```
 
 Note on the data: This dataset is much more complicated than the one we'll
