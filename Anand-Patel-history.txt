@@ -1,0 +1,500 @@
+    5  git push
+    6  git status
+    7  git add newplot_2.png Project_1.ipynb 
+    8  git commit -m "testing to get plots to show up"
+    9  git push
+   10  git status
+   11  git add Project_1.ipynb 
+   12  git commit -m "trying another way of embedding image"
+   13  git push
+   14  git status
+   15  git status
+   16  git status
+   17  git add Project_1.ipynb 
+   18  git commit -m "testing"
+   19  git push
+   20  git status
+   21  git add Project_1.ipynb 
+   22  git status
+   23  git commit -m "testing Image function"
+   24  git push
+   25  git status
+   26  git add Project_1.ipynb 
+   27  git commit -m "finished part 2 write ups"
+   28  git push
+   29  git status
+   30  git add Project_1.ipynb 
+   31  git commit -m "added scaffolding for part 3"
+   32  git push
+   33  git status
+   34  git add Project_1.ipynb 
+   35  git commit -m "added part 3 plot 1"
+   36  git push
+   37  git push
+   38  git status
+   39  git add img/ Project_1.ipynb 
+   40  git status
+   41  git commit -m "added all plots for part 3"
+   42  git push
+   43  ls
+   44  cd w205/project-1-Anand-Patel-95/
+   45  git status
+   46  git add Project_1.ipynb 
+   47  git commit -m "final plots"
+   48  git push
+   49  git status
+   50  git add Project_1.ipynb 
+   51  git commit -m "finished write ups in sections, need the overview at the top."
+   52  git push
+   53  git status
+   54  git add Project_1.ipynb 
+   55  git commit -m "finished notebook."
+   56  git push
+   57  git add Project_1.ipynb 
+   58  git commit -m "fixed table formatting in md"
+   59  git push
+   60  git status
+   61  history
+   62  git status
+   63  git pull
+   64  git status
+   65  git log
+   66  ls
+   67  cd w205/
+   68  git clone https://github.com/mids-w205-schioberg/project-2-Anand-Patel-95.git
+   69  ls
+   70  cd project-2-Anand-Patel-95/
+   71  git branch
+   72  git branch assignment
+   73  git branch
+   74  git checkout assignment
+   75  git branch
+   76  git status
+   77  ls
+   78  git status
+   79  git push origin assignment
+   80  git status
+   81  git add README.md 
+   82  git commit -m "added my name to readme"
+   83  git status
+   84  git branch
+   85  git push
+   86  git push --set-upstream origin assignment
+   87  git status
+   88  git push
+   89  ls
+   90  cd ..
+   91  ls
+   92  mkdir kafka
+   93  cd kafka/
+   94  cd ~/w205/course-content
+   95  git pull --all
+   96  ls
+   97  ls
+   98  cd ..
+   99  ls
+  100  cd kaf
+  101  cd kafka/
+  102  ls
+  103  nano docker-compose.yml 
+  104  cd ~/w205/kafka
+  105  docker ps
+  106  docker-compose up -d
+  107  docker-compose ps
+  108  docker-compose ps
+  109  docker-compose logs -f kafka
+  110  man grep
+  111  docker-compose logs -f kafka | grep started
+  112  docker-compose logs -f kafka | grep -i started
+  113  docker-compose exec kafka   kafka-topics     --create     --topic foo     --partitions 1     --replication-factor 1     --if-not-exists     --zookeeper zookeeper:32181
+  114  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  115  seq(5)
+  116  seq 5
+  117  docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
+  118  docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
+  119  docker-compose down
+  120  curl -L -o github-example-large.json https://goo.gl/Y4MD58
+  121  ls
+  122  pwd
+  123  docker-compose up -d
+  124  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  125  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  126  cat github-example-large.json | jq '.'
+  127  pwd
+  128  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json"
+  129  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c"
+  130  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c" | wc -l
+  131  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' " | wc -l
+  132  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c"
+  133  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  134  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+  135  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+  136  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
+  137  kafkacat
+  138  docker-compose exec mids bash
+  139  ls
+  140  ls -lah
+  141  cd ~
+  142  ls -lah
+  143  history 
+  144  pwd
+  145  history > text.txt
+  146  ls
+  147  ls
+  148  pwd
+  149  docker-compose ps
+  150  docker-compose down
+  151  ls
+  152  cd w205/kafka/
+  153  ls
+  154  docker-compose down
+  155  history
+  156  docker-compose ps
+  157  docker ps
+  158  docker ps
+  159  cd ~
+  160  ls
+  161  nano text.txt 
+  162  reset
+  163  pwd
+  164  ls /w*
+  165  cd..
+  166  cd ..
+  167  cd kafka/
+  168  cat ~/w205/exit
+  169  exit
+  170  ls
+  171  cd w205/
+  172  ls
+  173  cd kafka/
+  174  ls
+  175  cat ~/w205/kafka/github-example-large.json
+  176  cat ~/w205/kafka/github-example-large.json | jq '.'
+  177  cat ~/w205/kafka/github-example-large.json | jq '.[]' -c
+  178  cat ~/w205/kafka/github-example-large.json | jq '.' | wc -l
+  179  cat ~/w205/kafka/github-example-large.json | jq '.[]' -c | wc -l
+  180  ls
+  181  ls
+  182  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp`
+  183  curl -L -o assessment-attempts-20180128-121051-nested.json https://goo.gl/ME6hjp
+  184  ls
+  185  docker-compose up -d
+  186  docker-compose logs -f kafka
+  187      docker-compose exec kafka     kafka-topics       --create       --topic userAct       --partitions 1       --replication-factor 1       --if-not-exists \
+  188  vi proj2_kafka.sh
+  189  chmod +x proj2_kafka.sh 
+  190  ./proj2_kafka.sh 
+  191  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  192  docker-compose exec kafka kafka-topics --describe --topic userAct --zookeeper zookeeper:32181
+  193  echo $SHELL
+  194  bash
+  195  ls
+  196  cat ~/w205/kafka/assessment-attempts-20180128-121051-nested.json | jq '.'
+  197  cd w205/kafka/
+  198  ls
+  199  cat ~/w205/kafka/assessment-attempts-20180128-121051-nested.json | jq '.[]' -c | wc -l
+  200  docker-compose ps
+  201  docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  202  vi publishKafka.sh
+  203  chmod +x publishKafka.sh 
+  204  ./publishKafka.sh 
+  205  nano consumeKafka.sh
+  206  chmod +x consumeKafka.sh 
+  207  ./consumeKafka.sh 
+  208  nano consumeKafka.sh 
+  209  ./consumeKafka.sh 
+  210  nano consumeKafka.sh 
+  211  ./consumeKafka.sh 
+  212  docker-compose ps
+  213  docker-compose down
+  214  ls
+  215  nano proj2_kafka.sh 
+  216  mv proj2_kafka.sh proj2_createKafkaTopic.sh
+  217  ls -l proj2_createKafkaTopic.sh 
+  218  ls
+  219  umask
+  220  docker-compose ps
+  221  history > Anand-Patel-history.txt
+  222  ls
+  223  cat Anand-Patel-history.txt 
+  224  ls
+  225  ls
+  226  ls
+  227  cd w205/
+  228  ls
+  229  mkdir spark-with-kafka
+  230  cd spark-with-kafka/
+  231  cp ../course-content/07-Sourcing-Data/docker-compose.yml .
+  232  ls
+  233  ls
+  234  nano docker-compose.yml 
+  235  docker-compose up -d
+  236  docker-compose logs -f kafka
+  237  docker-compose l
+  238  docker-compose ps
+  239  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  240  seq 5
+  241  docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list kafka:29092 --topic foo && echo 'Produced 42 messages.'"
+  242  docker-compose exec spark pyspark
+  243  docker-compose exec spark cat /root/.python_history > sparkhist.txt
+  244  less sparkhist.txt 
+  245  docker-compose down
+  246  curl -L -o github-example-large.json https://goo.gl/Y4MD58
+  247  ls
+  248  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  249  docker-compose up -d
+  250  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  251  docker-compose ps
+  252  docker-compose down
+  253  docker-compose up -d
+  254  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  255  docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  256  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  257  docker-compose exec mids bash -c "cat /w205/github-example-large.json"
+  258  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  259  docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.'"
+  260  docker-compose exec mids bash -c "cat /w205/spark-with-kafka/github-example-large.json | jq '.'"
+  261  docker-compose exec mids bash -c "cat /w205/spark-with-kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+  262  docker-compose exec spark pyspark
+  263  docker-compose exec spark cat /root/.python_history >> sparkhist.txt 
+  264  nano sparkhist.txt 
+  265  docker-compose down
+  266  docker-compose ps
+  267  docker-compose logs -f kafka
+  268  docker-compose logs -f kafka
+  269  history
+  270  ls
+  271  cd w205/
+  272  ls
+  273  cd kafka
+  274  ls
+  275  history
+  276  ls
+  277  ls
+  278  cd ..
+  279  ls
+  280  cd week7_project2_testing/
+  281  ls
+  282  ls
+  283  docker-compose up -d
+  284  docker-compose ps
+  285  docker-compose logs -f kafka
+  286  ls
+  287  ls -l proj2_createKafkaTopic.sh 
+  288  chmod -x proj2_createKafkaTopic.sh 
+  289  ls -l proj2_createKafkaTopic.sh 
+  290  chmod +x proj2_createKafkaTopic.sh 
+  291  ls -l proj2_createKafkaTopic.sh 
+  292  ./proj2_createKafkaTopic.sh 
+  293  ls -l
+  294  chmod +x publishKafka.sh 
+  295  chmod +x consumeKafka.sh 
+  296  docker-compose exec kafka kafka-topics --describe --topic userAct --zookeeper zookeeper:32181
+  297  assessment-attempts-20180128-121051-nested.json | jq '.[]' -c 
+  298  cat assessment-attempts-20180128-121051-nested.json | jq '.[]' -c 
+  299  ./publishKafka.sh 
+  300  docker-compose exec spark pyspark
+  301  docker-compose exec spark cat /root/.python_history >> sparkhist.txt
+  302  docker-compose down
+  303  history > Anand-Patel-history.txt
+  304  ls
+  305  docker-compose ps
+  306  ls
+  307  cd w205/kafka/
+  308  ls
+  309  ls
+  310  cd w205/
+  311  ls
+  312  cd spark-with-kafka-and-hdfs/
+  313  ls
+  314  docker-compose exec mids bash -c "cat /w205/<your_workspace>/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
+  315  docker-compose exec mids bash -c "cat /w205/spark-with-kafka-and-hdfs/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
+  316  docker-compose exec kafka kafka-topics --list --zookeeper zookeeper:32181
+  317  docker-compose exec kafka kafka-topics --list --zookeeper zookeeper:32181
+  318  docker-compose exec cloudera hadoop fs -ls /tmp/
+  319  docker-compose exec cloudera hadoop fs -ls /tmp/some_commit_info
+  320  docker-compose exec cloudera hadoop fs -h -ls /tmp/some_commit_info
+  321  docker-compose exec cloudera hadoop fs -ls -h /tmp/some_commit_info
+  322  cd w205/spark-with-kafka-and-hdfs/
+  323  docker-compose exec cloudera hadoop fs -ls /tmp/
+  324  docker-compose exec cloudera hadoop fs -ls /tmp/players
+  325  docker-compose exec cloudera hadoop fs -ls -h /tmp/players
+  326  docker-compose exec cloudera hadoop fs -ls /tmp/extracted_players
+  327  docker-compose exec cloudera hadoop fs -ls -h /tmp/extracted_players
+  328  cp ../spark-with-kafka/github-example-large.json .
+  329  ls
+  330  docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  331  ls
+  332  cd w205/project-2-Anand-Patel-95/
+  333  ls
+  334  cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .
+  335  ls
+  336  nano docker-compose.yml 
+  337  ls
+  338  ls -l proj2_createKafkaTopic.sh
+  339  chmod -x proj2_createKafkaTopic.sh
+  340  ls -l proj2_createKafkaTopic.sh
+  341  chmod +x proj2_createKafkaTopic.sh
+  342  ls -l proj2_createKafkaTopic.sh
+  343  chmod +x publishKafka.sh
+  344  chmod +x consumeKafka.sh
+  345  git status
+  346  mkdir ~/w205/spark-with-kafka-and-hdfs
+  347  cd ~/w205/spark-with-kafka-and-hdfs
+  348  cp ~/w205/course-content//08-Querying-Data/docker-compose.yml 
+  349  cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .
+  350  ls
+  351  cd ~/w205/
+  352  ls
+  353  cd spark-with-kafka-and-hdfs/
+  354  ls
+  355  docker-compose up -d
+  356  curl -L -o players.json https://goo.gl/vsuCpZ
+  357  ls
+  358  docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  359  docker-compose exec cloudera hadoop fs -ls -h /tmp/
+  360  ls
+  361  docker-compose exec mids bash -c "cat /w205/spark-with-kafka-and-hdfs/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+  362  history
+  363  docker-compose exec mids bash -c "cat /w205/spark-with-kafka-and-hdfs/players.json | jq '.[]' -c"
+  364  history
+  365  docker-compose exec spark pyspark
+  366  docker-compose exec spark cat /root/.python_history >> sparkhist.txt
+  367  ls
+  368  docker-compose down
+  369  history > Anand-Patel-history.txt
+  370  ls
+  371  atom
+  372  ls
+  373  cd w205/project-2-Anand-Patel-95/
+  374  ls
+  375  docker-compose ps
+  376  docker-compose up -d
+  377  docker-compose ps
+  378  nano launch_pyspark_nb.sh
+  379  ls
+  380  chmod +x launch_pyspark_nb.sh 
+  381  ./launch_pyspark_nb.sh 
+  382  docker-compose 
+  383  docker-compose ps
+  384  docker-compose down
+  385  docker-compose ps
+  386  docker-compose up -d
+  387  docker-compose ps
+  388  ./launch_pyspark_nb.sh 
+  389  ./launch_pyspark_nb.sh 
+  390  docker-compose ps
+  391  docker-compose down
+  392  history > Anand-Patel-history.txt
+  393  cd w205/project-2-Anand-Patel-95/
+  394  ls
+  395  ./proj2_createKafkaTopic.sh
+  396  docker-compose ps
+  397  docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+  398  docker-compose exec kafka kafka-topics --describe --topic userAct --zookeeper zookeeper:32181
+  399  ./publishKafka.sh 
+  400  ./consumeKafka.sh 
+  401  docker-compose ps
+  402  ls
+  403  cd w205/
+  404  docker-compose exec cloudera hadoop fs -ls -h /tmp/
+  405  ls
+  406  cd project-2-Anand-Patel-95/
+  407  docker-compose exec cloudera hadoop fs -ls -h /tmp/
+  408  docker-compose exec cloudera hadoop fs -ls /tmp/
+  409  docker-compose exec cloudera hadoop fs -ls -h /tmp/
+  410  docker-compose exec cloudera hadoop fs -ls -h /tmp/assessments_tbl
+  411  docker-compose exec cloudera hadoop fs -ls -h /tmp/
+  412  docker-compose exec cloudera hadoop fs -ls -h /tmp/exams_taken_tbl
+  413  docker-compose exec cloudera hadoop fs -ls -h /tmp/assessments_tbl
+  414  ls
+  415  cd w205/project-2-Anand-Patel-95/
+  416  ls
+  417  docker-compose up -d
+  418  docker-compose ps
+  419  docker-compose logs -f kafka
+  420  docker-compose exec cloudera hadoop fs -ls -h /tmp/
+  421  ./proj2_createKafkaTopic.sh
+  422  docker-compose exec kafka kafka-topics --describe --topic userAct --zookeeper zookeeper:32181
+  423  ./publishKafka.sh
+  424  ./launch_pyspark_nb.sh
+  425  docker-compose down
+  426  docker-compose ps
+  427  history > Anand-Patel-history.txt
+  428  ls
+  429  cd w205/
+  430  ls
+  431  mkdir flash-with-kafka
+  432  cd flash-with-kafka/`
+  433  cd flash-with-kafka/
+  434  ls
+  435  cp ../course-content/09-Ingesting-Data/docker-compose.yml .
+  436  cp ../course-content/09-Ingesting-Data/*.py .
+  437  ls
+  438  docker-compose up
+  439  docker-compose ps
+  440  docker-compose down
+  441  docker-compose ps
+  442  docker-compose up -d
+  443  docker-compose ps
+  444   docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  445  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/basic_game_api.py flask run
+  446  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  447  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  448  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  449  docker-compose ps
+  450  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  451  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  452  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  453  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  454  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  455  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  456  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  457  docker-compose down
+  458  docker-compose up -d
+  459  docker-compose ps
+  460  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  461  history
+  462  docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+  463  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  464  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  465  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  466  docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
+  467  ls
+  468  docker-compose down
+  469  docker-compose ps
+  470  cd w205/flask-with-kafka/
+  471  ls
+  472  docker-compose exec mids curl http://localhost:5000/
+  473  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+  474  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+  475  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+  476  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+  477  docker-compose exec mids curl http://localhost:5000/purchase_a_swor
+  478  docker-compose exec mids curl http://localhost:5000/
+  479  docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t events -o beginning -e"
+  480  history > Week9-history.txt
+  481  ls
+  482  docker-compose exec mids curl http://localhost:5000/
+  483  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+  484  docker-compose exec mids curl http://localhost:5000/join_guild
+  485  docker-compose exec mids curl http://localhost:5000/join_guild
+  486  docker-compose exec mids curl http://localhost:5000/join_guild
+  487  docker-compose exec mids curl http://localhost:5000/join_guild
+  488  docker-compose exec mids curl http://localhost:5000/join_guild
+  489  docker-compose exec mids curl http://localhost:5000/purchase_a_sword
+  490  docker-compose exec mids curl http://localhost:5000/
+  491  docker-compose exec mids curl http://localhost:5000/join_guild
+  492  docker-compose exec mids curl http://localhost:5000/join_guild
+  493  docker-compose exec mids curl http://localhost:5000/join_guild
+  494  docker-compose exec mids curl http://localhost:5000/join_guild
+  495  docker-compose exec mids curl http://localhost:5000/join_guild
+  496  docker-compose exec mids curl http://localhost:5000/join_guild
+  497  docker-compose exec mids curl http://localhost:5000/join_guild
+  498  ls
+  499  cd w205/project-2-Anand-Patel-95/
+  500  docker-compose exec cloudera hadoop fs -ls -h /tmp/
+  501  docker-compose exec cloudera hadoop fs -ls -h /tmp/assessments_tbl
+  502  docker-compose exec cloudera hadoop fs -ls -h /tmp/exams_taken_tbl
+  503  docker-compose exec cloudera hadoop fs -ls -h /tmp/exams_and_scores_tbl
+  504  history > Anand-Patel-history.txt 
