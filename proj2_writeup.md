@@ -242,7 +242,7 @@ Replace the `0.0.0.0` with your VM's external IP address here [GCP VM instances]
 
 ## Switch to Jupyter Notebook for Spark Commands
 
-Please refer to the Jupyter Notebook `proj2_pyspark_nb.ipynb` ([link here to notebook](proj2_pyspark_nb.ipynb)) for commands and explanations for using Spark to:
+Please refer to the Jupyter Notebook `proj2_pyspark_nb.ipynb` ([link to notebook](proj2_pyspark_nb.ipynb)), ([link to pdf in case NB fails to load](proj2_pyspark_nb_submission.pdf)) for commands and explanations for using Spark to:
 
 -  Consume data from our kafka topic.
 - Save the data to Spark dataframes, inspect contents.
@@ -260,9 +260,24 @@ After reading through the Jupyter Notebook on Spark procedures, please continue 
 docker-compose exec cloudera hadoop fs -ls -h /tmp/
 ```
 
+```
+Found 5 items
+drwxr-xr-x   - root   supergroup          0 2021-07-02 14:50 /tmp/assessments_tbl
+drwxr-xr-x   - root   supergroup          0 2021-07-02 14:55 /tmp/exams_and_scores_tbl
+drwxr-xr-x   - root   supergroup          0 2021-07-02 14:50 /tmp/exams_taken_tbl
+drwxrwxrwt   - mapred mapred              0 2018-02-06 18:27 /tmp/hadoop-yarn
+drwx-wx-wx   - root   supergroup          0 2021-07-02 14:37 /tmp/hive
+```
+
 For Q1), Q2), Q3):
 ```
 docker-compose exec cloudera hadoop fs -ls -h /tmp/assessments_tbl
+```
+
+```
+Found 2 items
+-rw-r--r--   1 root supergroup          0 2021-07-02 14:50 /tmp/assessments_tbl/_SUCCESS
+-rw-r--r--   1 root supergroup    337.3 K 2021-07-02 14:50 /tmp/assessments_tbl/part-00000-a25a5d72-4889-4969-aa1d-6b38f8b277d4-c000.snappy.parquet
 ```
 
 For Q4):
@@ -270,11 +285,21 @@ For Q4):
 docker-compose exec cloudera hadoop fs -ls -h /tmp/exams_taken_tbl
 ```
 
+```
+Found 2 items
+-rw-r--r--   1 root supergroup          0 2021-07-02 14:50 /tmp/exams_taken_tbl/_SUCCESS
+-rw-r--r--   1 root supergroup       1015 2021-07-02 14:50 /tmp/exams_taken_tbl/part-00000-0a5468e1-d119-4674-83c3-a1616892804a-c000.snappy.parquet
+```
+
 For Q5), Q6):
 ```
 docker-compose exec cloudera hadoop fs -ls -h /tmp/exams_and_scores_tbl
 ```
-
+```
+Found 2 items
+-rw-r--r--   1 root supergroup          0 2021-07-02 14:55 /tmp/exams_and_scores_tbl/_SUCCESS
+-rw-r--r--   1 root supergroup    188.5 K 2021-07-02 14:55 /tmp/exams_and_scores_tbl/part-00000-fe140900-7604-4427-9729-1bfcc51ee7f3-c000.snappy.parquet
+```
 
 ## Taking down docker
 
