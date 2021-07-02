@@ -31,7 +31,7 @@ All code assumes data is under `/w205/assessment-attempts-20180128-121051-nested
 
 Below is a picture of the ETL pipeline needed for this project. We have data published to a Kafka queue. We are consuming this data into Spark to filter, transform, and do initial data analysis on it. We are saving our transformed data tables to Hadoop File System in the form of parquet files.
 
-
+![Alt Text](img/ETL_proj2.png)
 
 
 # Launching Docker Containers
@@ -242,7 +242,7 @@ Replace the `0.0.0.0` with your VM's external IP address here [GCP VM instances]
 
 ## Switch to Jupyter Notebook for Spark Commands
 
-Please refer to the Jupyter Notebook `proj2_pyspark_nb.ipynb` for commands and explanations for using Spark to:
+Please refer to the Jupyter Notebook `proj2_pyspark_nb.ipynb` ([link here to notebook](proj2_pyspark_nb.ipynb)) for commands and explanations for using Spark to:
 
 -  Consume data from our kafka topic.
 - Save the data to Spark dataframes, inspect contents.
