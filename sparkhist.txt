@@ -14,3 +14,41 @@ print(json.dumps(first_message, indent=4, sort_keys=True))
 first_message["exam_name"]
 first_message["sequences"]["counts"]["total"]
 exit()
+messages = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","userAct").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+import sys
+import json
+from pyspark.sql import Row
+import pprint
+messages.cache()
+messages.printSchema()
+messages.show()
+messages_as_strings=messages.selectExpr("CAST(value AS STRING)")
+messages_as_strings.show()
+messages_as_strings.cache()
+messages_as_strings.printSchema()
+messages_as_strings.count()
+first_message = json.loads(messages_as_strings.select('value').take(1)[0].value)
+print(json.dumps(first_message, indent=4, sort_keys=True))
+assessments2 = messages_as_strings.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
+assessments2.show()
+type(assessments2)
+assessments2.printSchema()
+assessments2.registerTempTable('assessments_tbl')
+spark.sql("select exam_name, max_attempts as from assessments_tbl order by max_attempts desc limit 5").show()
+spark.sql("select count(*) as total_assessments from assessments_tbl").show()
+spark.sql("select count(distinct base_exam_id) as unique_exams from assessments_tbl").show()
+exams_taken_df = spark.sql("select exam_name, count(*) as times_taken from assessments_tbl group by exam_name order by times_taken desc limit 10")
+exams_taken_df.show()
+spark.sql("select exam_name, count(distinct user_exam_id) as times_taken from assessments_tbl group by exam_name order by times_taken desc limit 10").show()
+exams_taken_df = spark.sql("select exam_name, count(*) as times_taken from assessments_tbl group by exam_name order by times_taken desc")
+exams_taken_df.registerTempTable('exams_taken_tbl')
+spark.sql("select exam_name, times_taken from exams_taken_tbl order by times_taken desc limit 1").show(1, False)
+spark.sql("select exam_name, times_taken from exams_taken_tbl order by times_taken limit 1").show(1, False)
+assessments2.write.parquet("/tmp/assessments_tbl")
+exams_taken_df.write.parquet("/tmp/exams_taken_tbl")
+exit()
+
+
+
+
+
