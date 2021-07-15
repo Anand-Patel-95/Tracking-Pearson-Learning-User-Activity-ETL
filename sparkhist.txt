@@ -1,0 +1,97 @@
+# Imports
+import sys
+import json
+from pyspark.sql import Row
+import pprint
+messages = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","userAct").option("startingOffsets", "earliest").option("endingOffsets", "latest").load()
+messages.cache()
+messages.printSchema()
+messages.show()
+messages_as_strings=messages.selectExpr("CAST(value AS STRING)")
+messages_as_strings.show()
+messages_as_strings.cache()
+messages_as_strings.printSchema()
+messages_as_strings.count()
+first_message = json.loads(messages_as_strings.select('value').take(1)[0].value)
+print(json.dumps(first_message, indent=4, sort_keys=True))
+assessments2 = messages_as_strings.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
+assessments2.show()
+type(assessments2)
+assessments2.printSchema()
+assessments2.registerTempTable('assessments_tbl')
+spark.sql("select exam_name, max_attempts as from assessments_tbl order by max_attempts desc limit 5").show()
+spark.sql("select count(*) as total_assessments from assessments_tbl").show()
+spark.sql("select count(distinct base_exam_id) as unique_exams from assessments_tbl").show()
+exams_taken_df = spark.sql("select exam_name, count(*) as times_taken from assessments_tbl group by exam_name order by times_taken desc limit 10")
+exams_taken_df.show()
+spark.sql("select exam_name, count(distinct user_exam_id) as times_taken from assessments_tbl group by exam_name order by times_taken desc limit 10").show()
+exams_taken_df = spark.sql("select exam_name, count(*) as times_taken from assessments_tbl group by exam_name order by times_taken desc")
+exams_taken_df.registerTempTable('exams_taken_tbl')
+spark.sql("select exam_name, times_taken from exams_taken_tbl order by times_taken desc limit 1").show(1, False)
+spark.sql("select exam_name, times_taken from exams_taken_tbl order by times_taken limit 1").show(1, False)
+assessments2.write.parquet("/tmp/assessments_tbl")
+exams_taken_df.write.parquet("/tmp/exams_taken_tbl")
+def percent_score_from_json_flatMap(row):
+    # grab the row for this exam
+    exam = json.loads(row.value)
+    
+    # check if keys of sequences contains counts
+    score_calc = -1 # default value
+    num_q_calc = -1 # default value
+    
+    # sequences must exist
+    if "sequences" in exam.keys():
+        # counts must exist
+        if "counts" in exam["sequences"]:
+            # question data is not weird
+            if ("correct" in exam["sequences"]["counts"]) and ("total" in exam["sequences"]["counts"]) and (exam["sequences"]["counts"]["total"] != 0):
+                score_calc = 100*exam["sequences"]["counts"]["correct"]/exam["sequences"]["counts"]["total"]
+                num_q_calc = len(exam["sequences"]["questions"])                
+    
+    exam_details = {"base_exam_id": exam["base_exam_id"],
+         "exam_name": exam["exam_name"],
+         "keen_id": exam["keen_id"],
+         "score": score_calc,
+         "num_questions": num_q_calc,
+         "user_exam_id": exam["user_exam_id"]}
+    
+    return [Row(**exam_details)]
+exams_and_scores = messages_as_strings.rdd.map(percent_score_from_json).toDF()
+def percent_score_from_json(row):
+    # grab the row for this exam
+    exam = json.loads(row.value)
+    
+    # check if keys of sequences contains counts
+    score_calc = -1 # default value
+    num_q_calc = -1 # default value
+    
+    # sequences must exist
+    if "sequences" in exam.keys():
+        # counts must exist
+        if "counts" in exam["sequences"]:
+            # question data is not weird
+            if ("correct" in exam["sequences"]["counts"]) and ("total" in exam["sequences"]["counts"]) and (exam["sequences"]["counts"]["total"] != 0):
+                score_calc = 100*exam["sequences"]["counts"]["correct"]/exam["sequences"]["counts"]["total"]
+                num_q_calc = len(exam["sequences"]["questions"])                
+    
+    exam_details = {"base_exam_id": exam["base_exam_id"],
+         "exam_name": exam["exam_name"],
+         "keen_id": exam["keen_id"],
+         "score": score_calc,
+         "num_questions": num_q_calc,
+         "user_exam_id": exam["user_exam_id"]}
+    
+    return Row(**exam_details)
+exams_and_scores = messages_as_strings.rdd.map(percent_score_from_json).toDF()
+exams_and_scores.printSchema()
+exams_and_scores.show()
+exams_and_scores = exams_and_scores.filter("score is not null") # not null
+exams_and_scores = exams_and_scores.filter("score != -1") # score not default val of -1
+exams_and_scores = exams_and_scores.filter("num_questions != -1") # num_questions not default val of -1
+exams_and_scores.registerTempTable("examsScores_tbl")
+spark.sql("SELECT COUNT(*) as total_num_exams FROM examsScores_tbl").show()
+spark.sql("select exam_name, count(*) as times_taken from examsScores_tbl group by exam_name limit 10").show()
+spark.sql("select distinct(exam_name), num_questions from examsScores_tbl order by num_questions desc limit 10").show(10, False)
+spark.sql("select exam_name, count(*) as times_taken, round(avg(score),2) as avg_score from examsScores_tbl group by exam_name having exam_name == 'Learning Git' order by times_taken desc limit 10").show()
+exams_and_scores.write.parquet("/tmp/exams_and_scores_tbl")
+exit()
